@@ -79,6 +79,7 @@ namespace DogGo.Controllers
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return View(dog);
             }
         }
