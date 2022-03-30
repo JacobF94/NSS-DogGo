@@ -1,4 +1,4 @@
-﻿@model DogGo.Models.Walker
+﻿@model DogGo.Models.ViewModels.WalkerViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -7,35 +7,78 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Walker</h4>
+    <h4>@Model.Walker.Name</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.Walker.Id)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
+            @Html.DisplayFor(model => model.Walker.Id)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Walker.Name)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Walker.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NeighborhoodId)
+            @Html.DisplayNameFor(model => model.Walker.NeighborhoodId)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Neighborhood.Name)
+            @Html.DisplayFor(model => model.Walker.Neighborhood.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
+            @Html.DisplayNameFor(model => model.Walker.ImageUrl)
         </dt>
         <dd class = "col-sm-10">
-            <img class="bg-info" src="@Model.ImageUrl" alt="avatar" />
+            <img class="bg-info" src="@Model.Walker.ImageUrl" alt="avatar" />
         </dd>
     </dl>
 </div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Walks.FirstOrDefault().Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Walks.FirstOrDefault().Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Walks.FirstOrDefault().Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Walks.FirstOrDefault().WalkerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Walks.FirstOrDefault().DogId)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Walks) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WalkerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DogId)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>

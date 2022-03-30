@@ -73,7 +73,7 @@ namespace DogGo.Repositories
                 {
                     cmd.CommandText = @"
                         SELECT o.Id, o.Email, o.Name, o.Address, o.NeighborhoodId, o.Phone, n.Name as 'Neighborhood', d.Id as 'DogId', d.Name as 'DogName'
-                        FROM Owner o JOIN Neighborhood n ON n.Id = o.NeighborhoodId JOIN Dog d on d.OwnerId = o.Id
+                        FROM Owner o LEFT JOIN Neighborhood n ON n.Id = o.NeighborhoodId LEFT JOIN Dog d on d.OwnerId = o.Id
                         WHERE o.Id = @id
                     ";
 
